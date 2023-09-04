@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
 
-const SRC_DIR = __DIR__ . '/../src/';
+// const SRC_DIR = __DIR__ . 'src\tests\EmailTest.php';
 
-require SRC_DIR . 'Email.php';
+require 'src/Email.php';
 
 use PHPUnit\Framework\TestCase; // precisa disso para reconhecer como teste de unidade
 // quando vai fazer esses teste usa o método dos 3A
