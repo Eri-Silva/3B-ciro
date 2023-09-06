@@ -12,10 +12,24 @@ use PHPUnit\Framework\TestCase; // precisa disso para reconhecer como teste de u
 
 final class EmailTest extends TestCase
 {
-    public function testCriarComEnderecoValido(): void
+
+    public function enderecosValidosProvider(): array
+    {
+        return [
+            ['alice@exemplo.com'],
+            ['bruno@exemplo.net'],
+            ['clara@seila.org']
+        ];
+    }
+
+    /** 
+    * @dataProvider enderecosValidosProvider
+    */
+    public function testCriarComEnderecoValido(String $endereco): void
     {
         //Arranjo
-        $endereco = 'teste@exemplo.com';
+        //$endereco = 'teste@exemplo.com';
+       
 
         //Ação
         $email = new Email($endereco);
@@ -23,4 +37,16 @@ final class EmailTest extends TestCase
         //Asserção
         $this->assertSame($endereco, $email->getEndereco());
     }
+
+    public function testNaoCriarComEnderecoInvalido(): void //para ser reconhecido como teste tem que iniciar com teste no nome
+{
+    //arranjo
+    $endereco = 'endereço.inválido';
+
+    //expectativa (asseção)
+    $this->expectException(InvalidArgumentException::class);
+
+    // ação
+    $email = new Email($endereco);
+}
 }
